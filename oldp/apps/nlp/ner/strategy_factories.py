@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from oldp.apps.nlp.models import Entity
-from oldp.apps.nlp.ner.strategies import base, money, percents
+from oldp.apps.nlp.ner.strategies import base, money, percents, legal_highlighting
 
 
 class NERStrategyFactory(ABC):
@@ -25,6 +25,16 @@ class UniversalNERStrategyFactory(NERStrategyFactory):
             return percents.GermanPercentageExtractionStrategy()
         elif entity_type in [Entity.PERSON, Entity.LOCATION, Entity.ORGANIZATION]:
             return base.DocEntityStrategy(entity_type)
+        elif entity_type in Entity.LEGAL_STAKEHOLDER and self.lang is 'de':
+            return legal_highlighting.GermanStakeholderExtractionStrategy()
+        elif entity_type in Entity.LEGAL_ACTION and self.lang is 'de':
+            return legal_highlighting.GermanActionExtractionStrategy()
+        elif entity_type in Entity.LEGAL_MATTER_IN_DISPUTE and self.lang is 'de':
+            return legal_highlighting.GermanMatterInDisputeExtractionStrategy()
+        elif entity_type in Entity.LEGAL_AMOUNT_IN_DISPUTE and self.lang is 'de':
+            return legal_highlighting.GermanAmountInDisputeExtractionStrategy()
+        elif entity_type in Entity.LEGAL_RULING_TYPE and self.lang is 'de':
+            return legal_highlighting.GermanRulingTypeExtractionStrategy()
         else:
             raise NotImplementedError('Strategy for type {} and language {} not '
                                       'implemented!'.format(entity_type, self.lang))

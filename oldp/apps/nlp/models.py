@@ -10,6 +10,11 @@ class Entity(models.Model, BaseMarker):
     LOCATION = "LOCATION"
     ORGANIZATION = "ORGANIZATION"
     PERCENT = "PERCENT"
+    LEGAL_STAKEHOLDER = "L_STKHOLDER"
+    LEGAL_ACTION = "L_ACTION"
+    LEGAL_MATTER_IN_DISPUTE = "L_MATTER_I_D"
+    LEGAL_AMOUNT_IN_DISPUTE = "L_AMOUNT_I_D"
+    LEGAL_RULING_TYPE = "L_RULING"
 
     TYPES = (
         (MONEY, "Monetary values with currency."),
@@ -17,15 +22,18 @@ class Entity(models.Model, BaseMarker):
         (PERSON, "Name of a person or family."),
         (LOCATION, "Name of geographical or political locations."),
         (ORGANIZATION, "Any organizational entity."),
-        (PERCENT, "Percentage amounts.")
+        (PERCENT, "Percentage amounts."),
+        (LEGAL_STAKEHOLDER, ""),
+        (LEGAL_ACTION, ""),
+        (LEGAL_MATTER_IN_DISPUTE, ""),
+        (LEGAL_AMOUNT_IN_DISPUTE, ""),
+        (LEGAL_RULING_TYPE, ""),
     )
     type = models.CharField(
         help_text='Entity type',
         max_length=12,
         choices=TYPES,
-        default=MONEY,  # TODO Should there be really a default?
         )
-    # TODO Why can't this be a plain TextField? For numeric values we can add an extra field, that would allow as well aggregations directly in the DB.
     value = models.TextField(
         help_text='Content that represents the entity'
     )

@@ -10,7 +10,9 @@ logger = logging.getLogger(__name__)
 
 class ProcessingStep(CaseProcessingStep, EntityProcessor):
     description = 'Extract entities'
-    entity_types = [Entity.MONEY, Entity.LOCATION, Entity.PERSON, Entity.ORGANIZATION]
+    entity_types = [Entity.MONEY, Entity.LOCATION, Entity.PERSON, Entity.ORGANIZATION, Entity.LEGAL_STAKEHOLDER,
+                    Entity.LEGAL_ACTION, Entity.LEGAL_MATTER_IN_DISPUTE, Entity.LEGAL_AMOUNT_IN_DISPUTE,
+                    Entity.LEGAL_RULING_TYPE]
 
     def process(self, case: Case) -> Case:
         self.extract_and_load(case.content, case, lang='de')
