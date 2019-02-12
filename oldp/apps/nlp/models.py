@@ -77,4 +77,6 @@ class NLPContent(models.Model):
 
     @staticmethod
     def get_entity_types():
-        return [Entity.ORGANIZATION, Entity.MONEY, Entity.PERSON, Entity.LOCATION]
+        return [Entity.ORGANIZATION, Entity.MONEY, Entity.PERSON, Entity.LOCATION,
+                Entity.LEGAL_STAKEHOLDER, Entity.LEGAL_ACTION, Entity.LEGAL_MATTER_IN_DISPUTE,
+                Entity.LEGAL_AMOUNT_IN_DISPUTE, Entity.LEGAL_RULING_TYPE]
