@@ -2,7 +2,7 @@ from oldp.apps.nlp.ner.strategies.dates import DatesExtractionStrategy
 from oldp.apps.nlp.tests.ner.strategies.base import BaseTestCase
 
 
-class GermanCurrencyExtractionStrategyTestCase(BaseTestCase.Strategy):
+class DatesExtractionStrategyTestCase(BaseTestCase.Strategy):
     strategy = DatesExtractionStrategy()
     lang = 'de'
     text = 'Mit der Verordnung (EU) 2015/123 des Rates vom 29. Januar 2015 zur Änderung der Verordnung Nr. ' \
