@@ -6,6 +6,7 @@ from oldp.apps.lib.markers import BaseMarker
 class Entity(models.Model, BaseMarker):
     MONEY = "MONEY"
     EURO = "EURO"
+    DATE = "DATE"
     PERSON = "PERSON"
     LOCATION = "LOCATION"
     ORGANIZATION = "ORGANIZATION"
@@ -19,6 +20,7 @@ class Entity(models.Model, BaseMarker):
     TYPES = (
         (MONEY, "Monetary values with currency."),
         (EURO, "Euro amounts."),
+        (DATE, "Calendar dates."),
         (PERSON, "Name of a person or family."),
         (LOCATION, "Name of geographical or political locations."),
         (ORGANIZATION, "Any organizational entity."),
@@ -77,6 +79,6 @@ class NLPContent(models.Model):
 
     @staticmethod
     def get_entity_types():
-        return [Entity.ORGANIZATION, Entity.MONEY, Entity.PERSON, Entity.LOCATION,
+        return [Entity.ORGANIZATION, Entity.DATE, Entity.MONEY, Entity.PERSON, Entity.LOCATION,
                 Entity.LEGAL_STAKEHOLDER, Entity.LEGAL_ACTION, Entity.LEGAL_MATTER_IN_DISPUTE,
                 Entity.LEGAL_AMOUNT_IN_DISPUTE, Entity.LEGAL_RULING_TYPE]

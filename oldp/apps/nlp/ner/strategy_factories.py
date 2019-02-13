@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from oldp.apps.nlp.models import Entity
-from oldp.apps.nlp.ner.strategies import base, money, percents, legal_highlighting
+from oldp.apps.nlp.ner.strategies import base, money, percents, legal_highlighting, dates
 
 
 class NERStrategyFactory(ABC):
@@ -17,7 +17,9 @@ class NERStrategyFactory(ABC):
 class UniversalNERStrategyFactory(NERStrategyFactory):
 
     def get_strategy(self, entity_type) -> base.NERStrategy:
-        if entity_type is Entity.MONEY and self.lang is 'de':
+        if entity_type is Entity.DATE:
+            return dates.DatesExtractionStrategy()
+        elif entity_type is Entity.MONEY and self.lang is 'de':
             return money.GermanCurrencyExtractionStrategy()
         elif entity_type is Entity.EURO and self.lang is 'de':
             return money.GermanEuroExtractionStrategy()
